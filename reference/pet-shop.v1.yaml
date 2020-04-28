@@ -3,6 +3,9 @@ info:
   title: pet shop
   version: '1.0'
   description: Testing
+  contact:
+    name: Jonas
+    email: jonas@example.com
 host: 'localhost:3000'
 schemes:
   - http
@@ -10,20 +13,36 @@ produces:
   - application/json
 consumes:
   - application/json
+tags:
+  - name: foo
+    description: Foo
+  - name: test
+    description: Test
+
 paths:
   /foos:
     post:
       summary: create foo
       tags:
         - foo
-      responses: {}
+        - test
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Foo'
       operationId: post-foos
       parameters:
         - in: body
           name: body
           schema:
             $ref: '#/definitions/Foo'
-          description: ''
+          description: The foo to create
+      description: |-
+        Description here...
+
+        - foo
+        - bar
 definitions:
   Foo:
     title: Foo
